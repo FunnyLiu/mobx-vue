@@ -6,10 +6,9 @@
 ``` bash
 /Users/liufang/openSource/FunnyLiu/mobx-vue
 ├── src
-|  ├── collectData.ts
+|  ├── collectData.ts - 收据vue组件的数据
 |  ├── index.ts - 直接暴露observer.ts中所有
-|  ├── observer.ts
-|  └── typings.d.ts
+|  ├── observer.ts - 提供包装函数observer
 
 ```
 
@@ -23,8 +22,25 @@
 
 ## 逐行文件分析
 
+### observer.ts
 
-  
+提供包装函数observer。
+
+首先提取传入的vue组件的数据，通过collectData.ts。
+
+然后手动创建组件继承自vue。
+
+覆盖其生命周期$mount阶段和$destroy阶段。
+
+在$mount阶段初次，通过mobx的reaction来建立响应式追踪，第二次数据变化就不再重新$mount，而是直接调用this.__watcher.getter，重新渲染组件。
+
+而$destroy阶段，则是代理执行vue的$destroy，并调用mobx的reaction.getDisposer()来回收。
+
+### collectData.ts
+
+收据vue组件的数据。
+
+通过mobx的isObservable来判断是否响应式，如果不是则手动通过Object.defineProperty增加响应式。
 
 # mobx-vue
 
