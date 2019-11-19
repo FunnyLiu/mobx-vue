@@ -1,3 +1,31 @@
+
+# 源码分析
+
+## 文件结构
+
+``` bash
+/Users/liufang/openSource/FunnyLiu/mobx-vue
+├── src
+|  ├── collectData.ts
+|  ├── index.ts - 直接暴露observer.ts中所有
+|  ├── observer.ts
+|  └── typings.d.ts
+
+```
+
+## 外部模块依赖
+
+请在： http://npm.broofa.com?q=mobx-vue 查看
+
+## 内部模块依赖
+
+![img](./inner.svg)
+
+## 逐行文件分析
+
+
+  
+
 # mobx-vue
 
 [![npm version](https://img.shields.io/npm/v/mobx-vue.svg?style=flat-square)](https://www.npmjs.com/package/mobx-vue)
